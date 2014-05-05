@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ws4redis',
-    'chatserver'
 )
 
 WEBSOCKET_URL = '/ws/'
@@ -50,6 +49,9 @@ WS4REDIS_CONNECTION = {
     #'db': 17,
     #'password': 'verysecret',
 }
+WS4REDIS_EXPIRE = 3600
+WS4REDIS_HEARTBEAT = '--heartbeat--'
+
 
 
 WSGI_APPLICATION = 'ws4redis.django_runserver.application'
@@ -62,6 +64,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+SESSION_ENGINE = 'redis_sessions.session'
+
+SESSION_REDIS_PREFIX = 'session'
 
 ROOT_URLCONF = 'timesheet.urls'
 
@@ -99,5 +105,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-
-from chatserver.settings import *
