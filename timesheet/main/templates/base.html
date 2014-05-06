@@ -10,6 +10,7 @@
 </head>
 <body>
 {% block content %}{% endblock %}
+<script type="text/javascript" src="{% static 'jquery/dist/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/ws4redis.js' %}"></script>
 <script type="text/javascript" src="{% static 'angular-route/angular-route.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
@@ -21,7 +22,7 @@
     angular.module('TimeSheet.django', []).
         constant('static_url', '{{ STATIC_URL }}').
         constant('websocket_uri', '{{ WEBSOCKET_URI }}').
-        constant('ws4redis_heartbeat', '{{ WS4REDIS_HEARTBEAT }}');
+        constant('ws4redis_heartbeat', {{ WS4REDIS_HEARTBEAT }});
 </script>
 </body>
 </html>
