@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'ws4redis',
     'djangobower',
+    'main'
 )
 
 WEBSOCKET_URL = '/ws/'
@@ -111,5 +112,5 @@ STATICFILES_FINDERS = global_settings.STATICFILES_FINDERS + ('djangobower.finder
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 
 BOWER_INSTALLED_APPS = (
-    'angular-pusher',
+    'angular-route',
 )

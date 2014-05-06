@@ -1,0 +1,22 @@
+{% load static %}<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+    <style>
+
+    </style>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="css/app.css"/>
+</head>
+<body>
+{% block content %}{% endblock %}
+<script type="text/javascript" src="{% static 'js/ws4redis.js' %}"></script>
+<script type="text/javascript" src="{% static 'angular/angular.js' %}"></script>
+<script type="text/javascript" src="{% static 'angular-pusher/angular-pusher.js' %}"></script>
+<script type="text/javascript" src="{% static 'angular-route/angular-route.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/services.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/controllers.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/filters.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/directives.js' %}"></script>
+</body>
+</html>
