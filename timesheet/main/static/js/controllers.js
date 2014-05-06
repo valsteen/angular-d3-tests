@@ -2,7 +2,8 @@
 
 /* Controllers */
 
-angular.module('TimeSheet.controllers', ['TimeSheet.django'])
-  .controller('MainView', ['$scope', function($scope) {
-  	$scope.lol = "I lol";
-  }]);
+angular.module('TimeSheet.controllers', ['TimeSheet.django', 'TimeSheet.websocket'])
+    .controller('MainView', ['$scope', 'WebSocket', function ($scope, WebSocket) {
+        $scope.lol = "I lol";
+    }]);
+
