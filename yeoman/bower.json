@@ -1,0 +1,31 @@
+{
+  "name": "timesheet",
+  "version": "0.1.0",
+  "description": "Yet another amazing AngularJS app",
+  "keywords": [
+    "angular"
+  ],
+  "homepage": "https://github.com/valsteen/timesheet",
+  "bugs": "https://github.com/valsteen/timesheet/issues",
+  "author": {
+    "name": "Vincent Alsteen",
+    "email": "",
+    "url": "https://github.com/valsteen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valsteen/timesheet.git"
+  },
+  "licenses": [
+    {
+      "type": "All rights reserved"
+    }
+  ],
+  "dependencies": {
+    "bootstrap": "3.1.1",
+    "angular-animate": "^1.3.0-beta.8",
+    "angular-resource": "^1.3.0-beta.8",
+    "angular-route": "^1.3.0-beta.8",
+    "angular": "^1.3.0-beta.8"
+  }
+}
