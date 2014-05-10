@@ -1,5 +1,4 @@
 Django==1.6.4
-django-bower==5.0.1
 django-nose==1.2
 django-redis-sessions==0.4.0
 -e git+git@github.com:jrief/django-websocket-redis.git@2c96a42643c27e40251b2e274cc58bbc0787845a#egg=django_websocket_redis-dev
