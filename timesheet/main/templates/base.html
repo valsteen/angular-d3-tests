@@ -6,18 +6,18 @@
     </style>
     <script type="text/javascript" src="{% static 'angular/angular.js' %}"></script>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/app.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/../static/app/app.css' %}"/>
 </head>
 <body>
 {% block content %}{% endblock %}
 <script type="text/javascript" src="{% static 'jquery/dist/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/ws4redis.js' %}"></script>
 <script type="text/javascript" src="{% static 'angular-route/angular-route.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/services.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/controllers.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/filters.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/directives.js' %}"></script>
+<script type="text/javascript" src="{% static 'app/app.js' %}"></script>
+<script type="text/javascript" src="{% static 'app/services.js' %}"></script>
+<script type="text/javascript" src="{% static 'app/controllers.js' %}"></script>
+<script type="text/javascript" src="{% static 'app/filters.js' %}"></script>
+<script type="text/javascript" src="{% static 'app/directives.js' %}"></script>
 <script type="text/javascript">
     angular.module('TimeSheet.django', []).
         constant('static_url', '{{ STATIC_URL }}').
