@@ -289,6 +289,12 @@ module.exports = function(grunt) {
           src: ['generated/*']
         }]
       },
+      html: {
+        expand: true,
+        cwd: '<%= yo.app %>',
+        dest: '<%= yo.dist %>',
+        src: '{,*/}*.html'
+      },
       styles: {
         expand: true,
         cwd: '<%= yo.app %>/styles',
@@ -307,6 +313,7 @@ module.exports = function(grunt) {
       ],
       dist: [
         'copy:styles',
+        'copy:html',
         'imagemin',
         'svgmin'
       ]
@@ -315,7 +322,7 @@ module.exports = function(grunt) {
     // Test settings
     karma: {
       options: {
-        configFile: 'test/karma.conf.js',
+        configFile: 'test/karma.conf.js'
       },
       unit: {
         singleRun: true
@@ -368,7 +375,7 @@ module.exports = function(grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin',
+    'usemin'
     //'htmlmin' // disabling htmlmin, because <!--[if lt IE 9]> crashes minifier's parser
   ]);
 
