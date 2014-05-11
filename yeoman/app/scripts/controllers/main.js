@@ -1,10 +1,19 @@
 'use strict';
 
-angular.module('valsteen.Timesheet')
+var app = module('valsteen.Timesheet', ['valsteen.Timesheet.services']);
 
-  .controller('MainCtrl', function($scope, $location, version) {
+app.controller('ListCtrl', ['$scope', 'useractivities', function ($scope, useractivities) {
+    $scope.useractivities = useractivities;
+}]);
 
-    $scope.$path = $location.path.bind($location);
-    $scope.version = version;
-
-  });
+app.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.
+        when('/', {
+            controller: 'ListCtrl',
+            resolve: {
+                recipes: function (MultiUserActivityLoader) {
+                    return MultiUserActivityLoader();
+                } },
+            templateUrl: '/views/list.html'
+        }).otherwise({redirectTo: '/'});
+}]);
