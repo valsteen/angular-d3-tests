@@ -30,3 +30,27 @@ services.factory('UserActivityLoader', ['UserActivity', '$route', '$q', function
         return delay.promise;
     };
 }]);
+
+services.factory('UserStream', ['$q', '$timeout', function ($q, $timeout) {
+    return function (receiveMessage) {
+        function try_until(cb) {
+            $timeout(function () {
+                if (window.WS4Redis === undefined) {
+                    try_until(cb);
+                    return;
+                }
+                cb(WS4Redis);
+            }, 500);
+        }
+
+
+
+        try_until(function (WS4Redis) {
+            WS4Redis({
+                uri: 'ws://' + location.host + '/ws/foobar?subscribe-broadcast&publish-broadcast&echo',
+                receive_message: receiveMessage,
+                heartbeat_msg: '--heartbeat--'
+            });
+        });
+    }
+}]);
