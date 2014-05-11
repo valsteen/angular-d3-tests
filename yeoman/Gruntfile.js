@@ -369,7 +369,7 @@ module.exports = function(grunt) {
     'uglify',
     'rev',
     'usemin',
-    'htmlmin'
+    //'htmlmin' // disabling htmlmin, because <!--[if lt IE 9]> crashes minifier's parser
   ]);
 
   grunt.registerTask('default', [
