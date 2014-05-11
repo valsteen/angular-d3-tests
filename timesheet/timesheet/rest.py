@@ -2,10 +2,23 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, routers
 
 # ViewSets define the view behavior.
-class UserViewSet(viewsets.ModelViewSet):
+from rest_framework import serializers
+
+
+class IdModelViewSet(viewsets.ModelViewSet):
+    def serializer_class(self, *args, **kwargs):
+        class DefaultSerializerClass(serializers.ModelSerializer):
+            id = serializers.Field()
+
+            class Meta:
+                model = self.model
+        return DefaultSerializerClass(*args, **kwargs)
+
+
+class UserViewSet(IdModelViewSet):
     model = User
 
-class GroupViewSet(viewsets.ModelViewSet):
+class GroupViewSet(IdModelViewSet):
     model = Group
 
 

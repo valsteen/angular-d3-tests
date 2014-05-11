@@ -289,12 +289,6 @@ module.exports = function(grunt) {
           src: ['generated/*']
         }]
       },
-      html: {
-        expand: true,
-        cwd: '<%= yo.app %>',
-        dest: '<%= yo.dist %>',
-        src: '{,*/}*.html'
-      },
       styles: {
         expand: true,
         cwd: '<%= yo.app %>/styles',
@@ -313,7 +307,6 @@ module.exports = function(grunt) {
       ],
       dist: [
         'copy:styles',
-        'copy:html',
         'imagemin',
         'svgmin'
       ]

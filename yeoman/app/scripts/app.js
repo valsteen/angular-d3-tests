@@ -1,26 +1,20 @@
 'use strict';
 
-angular.module('valsteen.Timesheet', ['ngAnimate', 'ngResource', 'ngRoute'])
+var app = angular.module('valsteen.Timesheet', ['ngAnimate', 'ngResource', 'ngRoute', 'valsteen.Timesheet.services']);
 
-  .constant('version', 'v0.1.0')
+app.constant('version', 'v0.1.0');
 
-  .config(function($locationProvider, $routeProvider) {
-
+app.config(function ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode(false);
 
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/home.html'
-      })
-      .when('/features', {
-        templateUrl: 'views/features.html'
-      })
-      .when('/contact', {
-        templateUrl: 'views/contact.html'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+    $routeProvider.
+        when('/', {
+            controller: 'ListCtrl',
+            resolve: {
+                useractivities: function (MultiUserActivityLoader) {
+                    return MultiUserActivityLoader();
+                } },
+            templateUrl: '/views/list.html'
+        }).otherwise({redirectTo: '/'});
 
-  });
-
+});
