@@ -3,7 +3,7 @@ from rest_framework import viewsets, routers
 
 # ViewSets define the view behavior.
 from rest_framework import serializers
-from main.models import Project, Activity, UserActivity
+from d3test.main.models import Project, Activity, UserActivity
 
 
 class IdModelViewSet(viewsets.ModelViewSet):

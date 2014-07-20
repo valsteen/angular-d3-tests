@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ws4redis',
-    'main',
+    'd3test.main',
+    'd3test.chatserver',
     'rest_framework',
     'south'
 )
@@ -85,7 +86,7 @@ SESSION_ENGINE = 'redis_sessions.session'
 
 SESSION_REDIS_PREFIX = 'session'
 
-ROOT_URLCONF = 'timesheet.urls'
+ROOT_URLCONF = 'd3test.d3test.urls'
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.contrib.auth.context_processors.auth',
@@ -99,7 +100,7 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(os.path.dirname(BASE_DIR),'var','run', 'db.sqlite3'),
+        'NAME': os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)),'var','run', 'db.sqlite3'),
     }
 }
 
@@ -121,4 +122,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "..", "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "../../var/www")

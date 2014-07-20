@@ -4,13 +4,14 @@ from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.views.decorators.csrf import csrf_exempt
 from ws4redis.publisher import RedisPublisher
+from ws4redis.redis_store import RedisMessage
 
 
 class BroadcastChatView(TemplateView):
     template_name = 'broadcast_chat.html'
 
     def get(self, request, *args, **kwargs):
-        RedisPublisher(facility='foobar', broadcast=True).publish_message('Hello everybody')  # send a welcome message to everybody
+        RedisPublisher(facility='foobar', broadcast=True).publish_message(RedisMessage('Hello everybody'))  # send a welcome message to everybody
         return super(BroadcastChatView, self).get(request, *args, **kwargs)
 
 
@@ -25,7 +26,7 @@ class UserChatView(TemplateView):
     @csrf_exempt
     def post(self, request, *args, **kwargs):
         redis_publisher = RedisPublisher(facility='foobar', users=[request.POST.get('user')])
-        redis_publisher.publish_message(request.POST.get('message'))
+        redis_publisher.publish_message(RedisMessage(request.POST.get('message')))
         return HttpResponse('OK')
 
 

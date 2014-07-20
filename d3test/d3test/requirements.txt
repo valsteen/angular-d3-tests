@@ -1,0 +1,13 @@
+Django
+django-nose
+django-redis-sessions
+gevent
+greenlet
+ipython
+meld3
+nose
+redis
+six
+supervisor
+wsaccel
+South

@@ -3,6 +3,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from rest_framework.utils import encoders
 from ws4redis.publisher import RedisPublisher
+from ws4redis.redis_store import RedisMessage
 
 
 @receiver([post_save, post_delete], sender=User)
@@ -15,4 +16,4 @@ def on_userlist_change(sender, **kwargs):
     user_view_set = UserViewSet()
     user_list = user_view_set.serializer_class(User.objects.all(), many=True).data
     json = encoders.JSONEncoder().encode(user_list)
-    redis_publisher.publish_message(json)
+    redis_publisher.publish_message(RedisMessage(json))
