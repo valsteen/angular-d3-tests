@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('valsteen.Timesheet', ['ngAnimate', 'ngResource', 'ngRoute', 'valsteen.Timesheet.services']);
+var app = angular.module('valsteen.Timesheet', ['ngAnimate', 'ngResource', 'ngRoute', 'valsteen.Timesheet.services', 'nvd3ChartDirectives']);
 
 app.constant('version', 'v0.1.0');
 

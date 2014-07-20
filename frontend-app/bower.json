@@ -26,7 +26,10 @@
     "angular-animate": "^1.2.16",
     "angular-resource": "^1.2.16",
     "angular-route": "^1.2.16",
-    "angular": "^1.2.16"
+    "angular": "^1.2.16",
+    "nvd3": "~1.1.15-beta",
+    "d3": "~3.4.11",
+    "angularjs-nvd3-directives": "~0.0.7"
   },
   "devDependencies": {
     "jasmine": "~2.0.0",
