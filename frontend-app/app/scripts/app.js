@@ -4,17 +4,17 @@ var app = angular.module('valsteen.Timesheet', ['ngAnimate', 'ngResource', 'ngRo
 
 app.constant('version', 'v0.1.0');
 
-app.config(function ($locationProvider, $routeProvider) {
+app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode(false);
     $routeProvider.
         when('/', {
             controller: 'ListCtrl',
             resolve: {
-                useractivities: function (MultiUserActivityLoader) {
+                useractivities: ['MultiUserActivityLoader', function (MultiUserActivityLoader) {
                     return MultiUserActivityLoader();
-                }
+                }]
             },
             templateUrl: '/views/list.html'
         }).otherwise({redirectTo: '/'});
 
-});
+}]);
