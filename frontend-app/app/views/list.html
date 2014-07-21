@@ -9,15 +9,10 @@
     xAxisTickFormat="xAxisTickFormat_Date_Format()"
     
     callback="chartCreated"
-    objectEquality="true"
     transitionduration=100
     interactive="true"
+    useinteractiveguideline="true"
     
     tooltips="true"
     >
 </nvd3-line-chart>
-
-<h3>Activity List</h3> <ul class="activities">
-<li ng-repeat="useractivity in useractivities track by useractivity.id">
-<div><a ng-href="#/view/{{useractivity.id}}">{{useractivity.email}} {{useractivity.first_name}} {{useractivity.last_name}}</a></div>
-</li> </ul>
