@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('ListCtrl', ['$scope', 'useractivities', 'UserStream', '$http', '$interval', function ($scope, useractivities, UserStream, $http, $interval) {
+app.controller('ListCtrl', ['$scope', 'useractivities', 'UserStream', 'SubscribeFeed', function ($scope, useractivities, UserStream, SubscribeFeed) {
     $scope.useractivities = useractivities;
 
     UserStream(function (useractivities) {
@@ -28,24 +28,30 @@ app.controller('ListCtrl', ['$scope', 'useractivities', 'UserStream', '$http', '
 
     var z = 1;
     $scope.chartCreated = function (chart) {
-        // $interval(function () {
-        //     z += 1;
-        //     $scope.cumulativeLineData[0].values.push({ "date": new Date(), "value": z});
-        //     if ($scope.cumulativeLineData[0].values.length > 10) {
-        //         console.log("remove");
-        //         $scope.cumulativeLineData[0].values.shift();
-        //     };
-        //     /*$scope.cumulativeLineData = [{
-        //         "key": "Series 2",
-        //         "values": [ {"date": "2014-06-20T18:14:42.327Z" , "value": 1000}, {"date": "2014-07-20T18:18:42.327Z" , "value": 1}]
-        //      }];*/
-        // }, 1000, 0, true);
+        SubscribeFeed("graph", function (newdata) {
+            newdata = angular.fromJson(newdata);
+            $scope.$apply(function () {
+                angular.forEach(newdata, function (set, index) {
+                    var key = set["key"];
+                    if ($scope.data.length <= index) {
+                        $scope.data.push({"key": key, "values": []});
+                    }
+
+                    angular.forEach(set["values"], function (value) {
+                        value["date"] = new Date(value.date);
+                        $scope.data[index]["values"].push(value);
+                    });
+
+                    while ($scope.data[index]["values"].length > 100) {
+                        $scope.data[index]["values"].shift();
+                    }
+
+                    $scope.data[index].values.sort(function (a,b) { return a.date > b.date ? -1 : 1 })
+                });
+            });
+        });
     }
 
-    $http.get("/scripts/cumulativeLineData.json").success(function(data) {
-        $scope.cumulativeLineData = [{
-            "key": "Series 2",
-            "values": []  // [ {"date": "2014-07-20T18:14:42.327Z" , "value": 20}, {"date": "2014-07-20T18:18:42.327Z" , "value": 1}]
-        }];
-    });
+
+    $scope.data = [];
 }]);

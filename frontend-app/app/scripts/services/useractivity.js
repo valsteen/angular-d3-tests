@@ -35,8 +35,10 @@ var services = angular.module('valsteen.Timesheet.services', ['ngResource']);
         };
     }]);
 
-    services.factory('UserStream', ['$q', '$timeout', function ($q, $timeout) {
-        return function (receiveMessage) {
+    services.factory('SubscribeFeed', ['$q', '$timeout', function ($q, $timeout) {
+        return function (feed, receiveMessage) {
+            var uri = WS_URL + feed + '?subscribe-broadcast';
+
             function try_until(cb) {
                 $timeout(function () {
                     if (window.WS4Redis === undefined) {
@@ -48,14 +50,19 @@ var services = angular.module('valsteen.Timesheet.services', ['ngResource']);
             }
 
 
-
             try_until(function (WS4Redis) {
                 WS4Redis({
-                    uri: WS_URL + 'foobar?subscribe-broadcast&publish-broadcast&echo',
+                    uri: uri,
                     receive_message: receiveMessage,
                     heartbeat_msg: '--heartbeat--'
                 });
             });
         }
     }]);
-}   
+
+    services.factory('UserStream', ['SubscribeFeed', function(SubscribeFeed) {
+        return function (receiveMessage) {
+            return SubscribeFeed('foobar', receiveMessage);    
+        }
+    }]);
+})();
