@@ -24,9 +24,8 @@ app.controller('ListCtrl', ['$scope', 'useractivities', 'UserStream', 'Subscribe
     $scope.getY = function(e){
         return e.value;
     }
-    
+   
 
-    var z = 1;
     $scope.chartCreated = function (chart) {
         SubscribeFeed("graph", function (newdata) {
             newdata = angular.fromJson(newdata);
