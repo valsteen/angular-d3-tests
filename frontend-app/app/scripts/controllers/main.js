@@ -22,7 +22,12 @@ app.controller('ListCtrl', ['$scope', '$timeout', 'SubscribeFeed', function ($sc
         if (!updateScheduled) {
 
             $timeout(function () {
-                $scope.data = angular.copy($scope.data);
+                var newdata = [];
+                // trick to cheaply enforce change detection, just create a new container but reference the same array of data
+                angular.forEach($scope.data, function (value) {
+                    newdata.push(value);
+                });
+                $scope.data = newdata;
                 updateScheduled = false;
             },1000,true);
             updateScheduled = true;
