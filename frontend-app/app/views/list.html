@@ -9,10 +9,12 @@
     xAxisTickFormat="xAxisTickFormat_Date_Format()"
     
     callback="chartCreated"
-    transitionduration=100
+    transitionduration=250
     interactive="true"
     useinteractiveguideline="true"
-    
+	showlegend="true"    
     tooltips="true"
     >
 </nvd3-line-chart>
+
+<select ng-model="graph" ng-options="name for name in graphs"></select>
